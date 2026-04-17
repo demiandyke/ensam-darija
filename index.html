@@ -4,235 +4,198 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apprends la Darija</title>
+
 <style>
-body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; }
+body { font-family: Arial; margin:0; background:#f4f6f9; }
 header { background:#0066cc; color:white; padding:20px; text-align:center; }
 nav { background:#004999; padding:10px; display:flex; justify-content:center; gap:20px; }
 nav a { color:white; text-decoration:none; font-weight:bold; }
 main { padding:20px; max-width:900px; margin:auto; }
-section { margin-bottom:40px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-h2 { color:#004999; }
-button { background:#0066cc; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; margin:5px 0; }
+
+section {
+    background:white;
+    padding:20px;
+    margin-bottom:30px;
+    border-radius:10px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
+
+button {
+    background:#0066cc;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
 button:hover { background:#004999; }
-.quiz { margin-top:10px; }
-.correct { color:green; font-weight:bold; }
-.incorrect { color:red; font-weight:bold; }
-.audio-btn { margin-left:10px; cursor:pointer; background:#004999; padding:5px 10px; border-radius:5px; color:white; border:none; }
+
+.correct { color:green; }
+.incorrect { color:red; }
+
+input { padding:8px; margin-top:5px; width:100%; }
+
+.progress {
+    height:10px;
+    background:#ddd;
+    border-radius:5px;
+    margin-top:10px;
+}
+
+.progress-bar {
+    height:10px;
+    width:0%;
+    background:#0066cc;
+    border-radius:5px;
+}
 </style>
 </head>
+
 <body>
 
 <header>
-    <h1>Apprends la Darija</h1>
-    <p>Simple, pratique et amusant pour les francophones !</p>
+<h1>Apprends la Darija 🇲🇦</h1>
+<p>Spécial étudiants ENSAM – Apprentissage rapide et pratique</p>
 </header>
 
 <nav>
-    <a href="#vocabulaire">Vocabulaire</a>
-    <a href="#expressions">Expressions</a>
-    <a href="#dialogues">Dialogues</a>
-    <a href="#quiz">Quiz</a>
+<a href="#vocabulaire">Vocabulaire</a>
+<a href="#phrases">Phrases ENSAM</a>
+<a href="#ecoute">Écoute</a>
+<a href="#quiz">Quiz</a>
 </nav>
 
 <main>
 
-<!-- Vocabulaire -->
+<!-- VOCAB -->
 <section id="vocabulaire">
-    <h2>Vocabulaire de base</h2>
-    <ul>
-        <li>Bonjour : Salam <button class="audio-btn" onclick="playAudio('audio/salam.mp3')">🔊</button></li>
-        <li>Merci : Shukran <button class="audio-btn" onclick="playAudio('audio/shukran.mp3')">🔊</button></li>
-        <li>Comment ça va ? : Kif dayr ? (homme) / Kif dayra ? (femme) <button class="audio-btn" onclick="playAudio('audio/kifdayr.mp3')">🔊</button></li>
-        <li>Oui : Iyyeh <button class="audio-btn" onclick="playAudio('audio/iyyeh.mp3')">🔊</button></li>
-        <li>Non : La <button class="audio-btn" onclick="playAudio('audio/la.mp3')">🔊</button></li>
-    </ul>
+<h2>Vocabulaire essentiel</h2>
+<ul>
+<li>Bonjour : Salam <button onclick="playAudio('audio/salam.mp3')">🔊</button></li>
+<li>Merci : Shukran <button onclick="playAudio('audio/shukran.mp3')">🔊</button></li>
+<li>Oui : Iyyeh <button onclick="playAudio('audio/iyyeh.mp3')">🔊</button></li>
+<li>Non : La <button onclick="playAudio('audio/la.mp3')">🔊</button></li>
+</ul>
 </section>
 
-<!-- Expressions -->
-<section id="expressions">
-    <h2>Expressions courantes</h2>
-    <ul>
-        <li>Je ne comprends pas : Ma fhemt-sh <button class="audio-btn" onclick="playAudio('audio/mafhemtsh.mp3')">🔊</button></li>
-        <li>Pouvez-vous répéter ? : 3awd 3afak <button class="audio-btn" onclick="playAudio('audio/3awd3afak.mp3')">🔊</button></li>
-        <li>Excusez-moi : Smh li <button class="audio-btn" onclick="playAudio('audio/smhli.mp3')">🔊</button></li>
-        <li>Où est… ? : Fin kayn… ? <button class="audio-btn" onclick="playAudio('audio/finkayn.mp3')">🔊</button></li>
-    </ul>
+<!-- PHRASES ENSAM -->
+<section id="phrases">
+<h2>Phrases utiles à l’ENSAM</h2>
+
+<ul>
+<li>Fin salle ? → Où est la salle ?</li>
+<li>3tini cours → Donne-moi le cours</li>
+<li>Fach exam ? → Quand est l’examen ?</li>
+<li>Ma fhemtch → Je n’ai pas compris</li>
+</ul>
+
 </section>
 
-<!-- Dialogues -->
-<section id="dialogues">
-    <h2>Dialogues simples</h2>
-    <p><strong>Situation : Rencontre avec un ami</strong></p>
-    <p>A: Salam, kif dayr ? <button class="audio-btn" onclick="playAudio('audio/dialogue1a.mp3')">🔊</button></p>
-    <p>B: Labas, shukran. W nta ? <button class="audio-btn" onclick="playAudio('audio/dialogue1b.mp3')">🔊</button></p>
-    <p>A: Labas, alhamdulillah. <button class="audio-btn" onclick="playAudio('audio/dialogue1c.mp3')">🔊</button></p>
+<!-- ECOUTE -->
+<section id="ecoute">
+<h2>Exercice d’écoute 🎧</h2>
+
+<p>Écoute et devine :</p>
+
+<button onclick="playAudio('audio/shukran.mp3')">🔊 Écouter</button>
+
+<button onclick="checkListening(true)">Shukran</button>
+<button onclick="checkListening(false)">Salam</button>
+
+<p id="listenResult"></p>
+
 </section>
 
-<!-- Quiz -->
+<!-- TRADUCTION -->
+<section>
+<h2>Traduction</h2>
+
+<p>Traduire : "Merci"</p>
+<input type="text" id="translateInput">
+<button onclick="checkTranslation()">Valider</button>
+
+<p id="translateResult"></p>
+
+</section>
+
+<!-- QUIZ -->
 <section id="quiz">
-    <h2>Quiz interactif</h2>
-    <div>
-        <p>1. Comment dit-on "Merci" en darija ?</p>
-        <button onclick="checkAnswer(this, true)">Shukran</button>
-        <button onclick="checkAnswer(this, false)">Iyyeh</button>
-        <button onclick="checkAnswer(this, false)">La</button>
-        <p class="feedback"></p>
-    </div>
+<h2>Quiz</h2>
 
-    <div>
-        <p>2. Comment dit-on "Je ne comprends pas" ?</p>
-        <button onclick="checkAnswer(this, false)">Smh li</button>
-        <button onclick="checkAnswer(this, false)">Fin kayn ?</button>
-        <button onclick="checkAnswer(this, true)">Ma fhemt-sh</button>
-        <p class="feedback"></p>
-    </div>
+<p>Comment dit-on "Oui" ?</p>
 
-    <div>
-        <p>Score final : <span id="score">0</span> / 2</p>
-    </div>
+<button onclick="answerQuiz(true)">Iyyeh</button>
+<button onclick="answerQuiz(false)">La</button>
+
+<p id="quizResult"></p>
+
+<div class="progress">
+<div class="progress-bar" id="progressBar"></div>
+</div>
+
+<p>Score : <span id="score">0</span></p>
+
 </section>
 
 </main>
 
 <script>
+
 let score = 0;
+let progress = 0;
 
 function playAudio(src) {
     const audio = new Audio(src);
     audio.play();
 }
 
-function checkAnswer(btn, correct) {
-    const feedback = btn.parentElement.querySelector('.feedback');
-    if (correct) {
-        feedback.textContent = "✅ Correct !";
-        feedback.className = "feedback correct";
+// QUIZ
+function answerQuiz(correct) {
+    let result = document.getElementById("quizResult");
+
+    if(correct){
+        result.innerHTML = "✅ Correct";
+        result.className = "correct";
         score++;
-        document.getElementById('score').textContent = score;
     } else {
-        feedback.textContent = "❌ Incorrect, essaie encore !";
-        feedback.className = "feedback incorrect";
+        result.innerHTML = "❌ Faux";
+        result.className = "incorrect";
+    }
+
+    progress += 50;
+    document.getElementById("progressBar").style.width = progress + "%";
+    document.getElementById("score").innerText = score;
+}
+
+// TRADUCTION
+function checkTranslation(){
+    let val = document.getElementById("translateInput").value.toLowerCase();
+    let result = document.getElementById("translateResult");
+
+    if(val.includes("shukran")){
+        result.innerHTML = "✅ Correct";
+        result.className = "correct";
+        score++;
+    } else {
+        result.innerHTML = "❌ Réponse attendue : Shukran";
+        result.className = "incorrect";
     }
 }
-</script>
 
-</body>
-</html><!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apprends la Darija</title>
-<style>
-body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; }
-header { background:#0066cc; color:white; padding:20px; text-align:center; }
-nav { background:#004999; padding:10px; display:flex; justify-content:center; gap:20px; }
-nav a { color:white; text-decoration:none; font-weight:bold; }
-main { padding:20px; max-width:900px; margin:auto; }
-section { margin-bottom:40px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-h2 { color:#004999; }
-button { background:#0066cc; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; margin:5px 0; }
-button:hover { background:#004999; }
-.quiz { margin-top:10px; }
-.correct { color:green; font-weight:bold; }
-.incorrect { color:red; font-weight:bold; }
-.audio-btn { margin-left:10px; cursor:pointer; background:#004999; padding:5px 10px; border-radius:5px; color:white; border:none; }
-</style>
-</head>
-<body>
+// ECOUTE
+function checkListening(correct){
+    let res = document.getElementById("listenResult");
 
-<header>
-    <h1>Apprends la Darija</h1>
-    <p>Simple, pratique et amusant pour les francophones !</p>
-</header>
-
-<nav>
-    <a href="#vocabulaire">Vocabulaire</a>
-    <a href="#expressions">Expressions</a>
-    <a href="#dialogues">Dialogues</a>
-    <a href="#quiz">Quiz</a>
-</nav>
-
-<main>
-
-<!-- Vocabulaire -->
-<section id="vocabulaire">
-    <h2>Vocabulaire de base</h2>
-    <ul>
-        <li>Bonjour : Salam <button class="audio-btn" onclick="playAudio('audio/salam.mp3')">🔊</button></li>
-        <li>Merci : Shukran <button class="audio-btn" onclick="playAudio('audio/shukran.mp3')">🔊</button></li>
-        <li>Comment ça va ? : Kif dayr ? (homme) / Kif dayra ? (femme) <button class="audio-btn" onclick="playAudio('audio/kifdayr.mp3')">🔊</button></li>
-        <li>Oui : Iyyeh <button class="audio-btn" onclick="playAudio('audio/iyyeh.mp3')">🔊</button></li>
-        <li>Non : La <button class="audio-btn" onclick="playAudio('audio/la.mp3')">🔊</button></li>
-    </ul>
-</section>
-
-<!-- Expressions -->
-<section id="expressions">
-    <h2>Expressions courantes</h2>
-    <ul>
-        <li>Je ne comprends pas : Ma fhemt-sh <button class="audio-btn" onclick="playAudio('audio/mafhemtsh.mp3')">🔊</button></li>
-        <li>Pouvez-vous répéter ? : 3awd 3afak <button class="audio-btn" onclick="playAudio('audio/3awd3afak.mp3')">🔊</button></li>
-        <li>Excusez-moi : Smh li <button class="audio-btn" onclick="playAudio('audio/smhli.mp3')">🔊</button></li>
-        <li>Où est… ? : Fin kayn… ? <button class="audio-btn" onclick="playAudio('audio/finkayn.mp3')">🔊</button></li>
-    </ul>
-</section>
-
-<!-- Dialogues -->
-<section id="dialogues">
-    <h2>Dialogues simples</h2>
-    <p><strong>Situation : Rencontre avec un ami</strong></p>
-    <p>A: Salam, kif dayr ? <button class="audio-btn" onclick="playAudio('audio/dialogue1a.mp3')">🔊</button></p>
-    <p>B: Labas, shukran. W nta ? <button class="audio-btn" onclick="playAudio('audio/dialogue1b.mp3')">🔊</button></p>
-    <p>A: Labas, alhamdulillah. <button class="audio-btn" onclick="playAudio('audio/dialogue1c.mp3')">🔊</button></p>
-</section>
-
-<!-- Quiz -->
-<section id="quiz">
-    <h2>Quiz interactif</h2>
-    <div>
-        <p>1. Comment dit-on "Merci" en darija ?</p>
-        <button onclick="checkAnswer(this, true)">Shukran</button>
-        <button onclick="checkAnswer(this, false)">Iyyeh</button>
-        <button onclick="checkAnswer(this, false)">La</button>
-        <p class="feedback"></p>
-    </div>
-
-    <div>
-        <p>2. Comment dit-on "Je ne comprends pas" ?</p>
-        <button onclick="checkAnswer(this, false)">Smh li</button>
-        <button onclick="checkAnswer(this, false)">Fin kayn ?</button>
-        <button onclick="checkAnswer(this, true)">Ma fhemt-sh</button>
-        <p class="feedback"></p>
-    </div>
-
-    <div>
-        <p>Score final : <span id="score">0</span> / 2</p>
-    </div>
-</section>
-
-</main>
-
-<script>
-let score = 0;
-
-function playAudio(src) {
-    const audio = new Audio(src);
-    audio.play();
-}
-
-function checkAnswer(btn, correct) {
-    const feedback = btn.parentElement.querySelector('.feedback');
-    if (correct) {
-        feedback.textContent = "✅ Correct !";
-        feedback.className = "feedback correct";
-        score++;
-        document.getElementById('score').textContent = score;
+    if(correct){
+        res.innerHTML = "✅ Bien joué";
+        res.className = "correct";
     } else {
-        feedback.textContent = "❌ Incorrect, essaie encore !";
-        feedback.className = "feedback incorrect";
+        res.innerHTML = "❌ Essaie encore";
+        res.className = "incorrect";
     }
 }
+
 </script>
 
 </body>
