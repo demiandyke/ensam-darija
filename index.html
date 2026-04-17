@@ -3,200 +3,882 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apprends la Darija</title>
-
+<title>Darija — ENSAM Tanger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-body { font-family: Arial; margin:0; background:#f4f6f9; }
-header { background:#0066cc; color:white; padding:20px; text-align:center; }
-nav { background:#004999; padding:10px; display:flex; justify-content:center; gap:20px; }
-nav a { color:white; text-decoration:none; font-weight:bold; }
-main { padding:20px; max-width:900px; margin:auto; }
+*{box-sizing:border-box;margin:0;padding:0}
 
-section {
-    background:white;
-    padding:20px;
-    margin-bottom:30px;
-    border-radius:10px;
-    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+:root{
+  --bg:#0e0e0e;
+  --surface:#161616;
+  --surface2:#1e1e1e;
+  --border:#2a2a2a;
+  --border2:#333;
+  --text:#f0f0f0;
+  --muted:#888;
+  --muted2:#555;
+  --accent:#c8a96e;
+  --accent-dim:#a8894e;
+  --green:#5a9e72;
+  --red:#c06060;
+  --white:#fff;
 }
 
-button {
-    background:#0066cc;
-    color:white;
-    border:none;
-    padding:8px 12px;
-    border-radius:5px;
-    cursor:pointer;
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  font-size:15px;
+  line-height:1.6;
 }
 
-button:hover { background:#004999; }
-
-.correct { color:green; }
-.incorrect { color:red; }
-
-input { padding:8px; margin-top:5px; width:100%; }
-
-.progress {
-    height:10px;
-    background:#ddd;
-    border-radius:5px;
-    margin-top:10px;
+/* ── HEADER ── */
+.site-header{
+  padding:56px 24px 40px;
+  max-width:760px;
+  margin:auto;
+  border-bottom:1px solid var(--border);
+}
+.site-header__eyebrow{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-weight:500;
+  margin-bottom:14px;
+}
+.site-header__title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,5vw,3rem);
+  font-weight:400;
+  color:var(--white);
+  line-height:1.15;
+}
+.site-header__title em{font-style:italic;color:var(--accent)}
+.site-header__sub{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:0.9rem;
+  font-weight:300;
 }
 
-.progress-bar {
-    height:10px;
-    width:0%;
-    background:#0066cc;
-    border-radius:5px;
+/* ── NAV ── */
+.site-nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.site-nav__inner{
+  max-width:760px;
+  margin:auto;
+  display:flex;
+  overflow-x:auto;
+  scrollbar-width:none;
+  gap:0;
+}
+.site-nav__inner::-webkit-scrollbar{display:none}
+.nav-tab{
+  flex-shrink:0;
+  padding:14px 20px;
+  font-size:12px;
+  letter-spacing:0.8px;
+  text-transform:uppercase;
+  font-weight:500;
+  font-family:'DM Sans',sans-serif;
+  background:none;
+  border:none;
+  color:var(--muted);
+  cursor:pointer;
+  border-bottom:1px solid transparent;
+  margin-bottom:-1px;
+  transition:color 0.2s,border-color 0.2s;
+  white-space:nowrap;
+}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* ── MAIN ── */
+.main{max-width:760px;margin:auto;padding:40px 24px 80px}
+.section{display:none;animation:fadeIn 0.25s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── BLOCKS ── */
+.block{margin-bottom:28px}
+.block-label{
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--muted2);
+  font-weight:500;
+  margin-bottom:16px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+
+/* ── LESSON PILLS ── */
+.lesson-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.lpill{
+  padding:7px 16px;
+  border-radius:2px;
+  border:1px solid var(--border2);
+  font-size:12px;
+  letter-spacing:0.5px;
+  font-weight:500;
+  cursor:pointer;
+  background:transparent;
+  color:var(--muted);
+  font-family:'DM Sans',sans-serif;
+  transition:all 0.18s;
+}
+.lpill:hover{border-color:var(--accent);color:var(--accent)}
+.lpill.active{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+
+/* ── TIP ── */
+.tip{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:300;
+  padding:12px 16px;
+  border-left:2px solid var(--accent);
+  background:var(--surface);
+  margin-bottom:20px;
+  line-height:1.6;
+}
+
+/* ── VOCAB GRID ── */
+.vocab-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+}
+.vocab-card{
+  background:var(--surface);
+  padding:18px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  transition:background 0.15s;
+}
+.vocab-card:hover{background:var(--surface2)}
+.vc-fr{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted2);font-weight:500}
+.vc-darija{font-family:'DM Serif Display',serif;font-size:1.35rem;color:var(--white);font-weight:400}
+.vc-arabic{font-size:1.1rem;color:var(--muted);text-align:right;line-height:1}
+.vc-ph{font-size:12px;color:var(--accent);font-style:italic}
+.vc-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.speak-btn{
+  background:none;
+  border:1px solid var(--border2);
+  color:var(--muted);
+  padding:4px 11px;
+  font-size:11px;
+  letter-spacing:0.5px;
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  transition:all 0.18s;
+  border-radius:2px;
+}
+.speak-btn:hover{border-color:var(--accent);color:var(--accent)}
+.speak-btn.playing{border-color:var(--green);color:var(--green)}
+
+/* ── PHRASES ── */
+.phrase-group-title{
+  font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted2);font-weight:500;margin:32px 0 12px;
+  padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.phrase-item{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:16px;padding:14px 0;border-bottom:1px solid var(--border);
+}
+.phrase-item:last-child{border-bottom:none}
+.phrase-left{flex:1}
+.phrase-darija{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:3px}
+.phrase-fr{font-size:13px;color:var(--muted);font-weight:300}
+.phrase-ctx{font-size:11px;color:var(--accent);margin-top:4px;letter-spacing:0.3px}
+.phrase-speak{
+  flex-shrink:0;background:none;border:1px solid var(--border2);
+  color:var(--muted);padding:5px 12px;font-size:11px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;border-radius:2px;transition:all 0.18s;align-self:center;
+}
+.phrase-speak:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{margin-bottom:24px}
+.progress-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px}
+.progress-track{height:2px;background:var(--border2);width:100%}
+.progress-fill{height:2px;background:var(--accent);transition:width 0.4s}
+
+/* ── QUIZ ── */
+.quiz-q{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--white);margin-bottom:24px;line-height:1.4}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.quiz-opt{
+  padding:14px 12px;
+  border:1px solid var(--border2);
+  background:var(--surface);
+  color:var(--text);
+  font-size:0.92rem;
+  font-family:'DM Serif Display',serif;
+  cursor:pointer;
+  text-align:center;
+  transition:all 0.15s;
+  border-radius:2px;
+  line-height:1.3;
+}
+.quiz-opt:hover{border-color:var(--accent);color:var(--accent)}
+.quiz-opt.correct{border-color:var(--green);color:var(--green);background:rgba(90,158,114,0.08)}
+.quiz-opt.wrong{border-color:var(--red);color:var(--red);background:rgba(192,96,96,0.08)}
+.feedback{
+  font-size:13px;font-weight:500;padding:12px 14px;margin-bottom:16px;
+  border-radius:2px;display:none;letter-spacing:0.2px;
+}
+.feedback.show{display:block}
+.feedback.correct{background:rgba(90,158,114,0.12);color:var(--green);border:1px solid rgba(90,158,114,0.3)}
+.feedback.wrong{background:rgba(192,96,96,0.12);color:var(--red);border:1px solid rgba(192,96,96,0.3)}
+
+/* ── BUTTONS ── */
+.btn-primary{
+  width:100%;padding:13px;
+  background:var(--accent);color:var(--bg);
+  border:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;
+  transition:background 0.18s;border-radius:2px;
+}
+.btn-primary:hover{background:var(--accent-dim)}
+.btn-primary:disabled{background:var(--border2);color:var(--muted2);cursor:not-allowed}
+.btn-outline{
+  width:100%;padding:12px;
+  background:transparent;color:var(--muted);
+  border:1px solid var(--border2);font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;
+  transition:all 0.18s;border-radius:2px;
+}
+.btn-outline:hover{border-color:var(--text);color:var(--text)}
+.btn-outline:disabled{opacity:0.35;cursor:not-allowed}
+
+/* ── DONE CARD ── */
+.done-card{text-align:center;padding:48px 24px;display:none}
+.done-card.show{display:block}
+.done-score{font-family:'DM Serif Display',serif;font-size:3.5rem;color:var(--accent);margin-bottom:8px}
+.done-label{font-size:14px;color:var(--muted);margin-bottom:32px}
+
+/* ── TRANSLATION ── */
+.translate-input{
+  width:100%;padding:14px 16px;
+  background:var(--surface);border:1px solid var(--border2);
+  color:var(--text);font-size:1rem;font-family:'DM Serif Display',serif;
+  outline:none;transition:border-color 0.18s;border-radius:2px;
+  margin-bottom:10px;
+}
+.translate-input:focus{border-color:var(--accent)}
+.t-word{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--white);margin-bottom:20px}
+
+/* ── LISTEN ── */
+.listen-word{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--white);margin-bottom:4px;text-align:center}
+.listen-ph{font-size:13px;color:var(--accent);font-style:italic;text-align:center;margin-bottom:20px}
+.waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:44px;margin-bottom:20px}
+.wbar{width:3px;background:var(--border2);border-radius:2px;transition:height 0.1s}
+.wbar.a{background:var(--accent)}
+.listen-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.listen-opt{
+  padding:12px;border:1px solid var(--border2);background:var(--surface);
+  color:var(--text);font-size:0.88rem;font-family:'DM Sans',sans-serif;
+  cursor:pointer;text-align:center;transition:all 0.15s;border-radius:2px;font-weight:300;
+}
+.listen-opt:hover{border-color:var(--accent);color:var(--accent)}
+.listen-opt.correct{border-color:var(--green);color:var(--green);background:rgba(90,158,114,0.08)}
+.listen-opt.wrong{border-color:var(--red);color:var(--red);background:rgba(192,96,96,0.08)}
+
+/* ── RECORDER ── */
+.rec-word{font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--accent);margin:16px 0 4px;text-align:center}
+.rec-ph{font-size:13px;color:var(--muted);text-align:center;margin-bottom:24px;font-style:italic}
+.rec-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.rec-btn-start{
+  padding:11px 26px;background:var(--accent);color:var(--bg);
+  border:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;border-radius:2px;transition:background 0.18s;
+}
+.rec-btn-start:hover{background:var(--accent-dim)}
+.rec-btn-start.rec{background:var(--green);animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.65}}
+.rec-btn-sec{
+  padding:11px 20px;background:transparent;color:var(--muted);
+  border:1px solid var(--border2);font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;border-radius:2px;transition:all 0.18s;
+}
+.rec-btn-sec:hover{border-color:var(--text);color:var(--text)}
+.rec-btn-sec:disabled{opacity:0.3;cursor:not-allowed}
+.rec-status{font-size:12px;color:var(--muted2);text-align:center;letter-spacing:0.3px;min-height:18px}
+
+/* ── AUDIO UPLOAD ── */
+.upload-zone{
+  border:1px dashed var(--border2);padding:32px 24px;text-align:center;
+  margin-bottom:20px;transition:border-color 0.18s;
+}
+.upload-zone:hover{border-color:var(--accent)}
+.upload-zone-label{font-size:13px;color:var(--muted);margin-bottom:12px}
+.upload-btn{
+  display:inline-block;padding:9px 22px;border:1px solid var(--border2);
+  color:var(--muted);font-size:11px;letter-spacing:1px;text-transform:uppercase;
+  font-weight:500;cursor:pointer;transition:all 0.18s;border-radius:2px;
+}
+.upload-btn:hover{border-color:var(--accent);color:var(--accent)}
+.audio-item{
+  display:flex;align-items:center;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--border);
+}
+.audio-name{flex:1;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)}
+.audio-sm-btn{
+  background:none;border:1px solid var(--border2);color:var(--muted);
+  padding:4px 12px;font-size:11px;letter-spacing:0.5px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;border-radius:2px;transition:all 0.18s;
+}
+.audio-sm-btn:hover{border-color:var(--accent);color:var(--accent)}
+.audio-del{background:none;border:none;color:var(--muted2);cursor:pointer;font-size:14px;padding:2px 6px;transition:color 0.15s}
+.audio-del:hover{color:var(--red)}
+.assign-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.assign-name{font-size:12px;color:var(--muted);flex-shrink:0;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.assign-select{
+  flex:1;padding:8px 10px;background:var(--surface);border:1px solid var(--border2);
+  color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;border-radius:2px;
+}
+.assign-select:focus{border-color:var(--accent)}
+.assign-btn{
+  padding:8px 14px;background:none;border:1px solid var(--border2);color:var(--muted);
+  font-size:11px;letter-spacing:0.5px;cursor:pointer;font-family:'DM Sans',sans-serif;border-radius:2px;transition:all 0.18s;flex-shrink:0;
+}
+.assign-btn:hover{border-color:var(--accent);color:var(--accent)}
+.empty-msg{font-size:13px;color:var(--muted2);padding:16px 0;text-align:center}
+
+@media(max-width:480px){
+  .vocab-grid{grid-template-columns:1fr 1fr}
+  .quiz-opts{grid-template-columns:1fr}
+  .listen-opts{grid-template-columns:1fr}
 }
 </style>
 </head>
-
 <body>
 
-<header>
-<h1>Apprends la Darija 🇲🇦</h1>
-<p>Spécial étudiants ENSAM – Apprentissage rapide et pratique</p>
+<header class="site-header">
+  <p class="site-header__eyebrow">ENSAM Tanger · Guide linguistique</p>
+  <h1 class="site-header__title">Apprends<br>la <em>Darija</em></h1>
+  <p class="site-header__sub">Pour les étudiants étrangers — vocabulaire, phrases, exercices</p>
 </header>
 
-<nav>
-<a href="#vocabulaire">Vocabulaire</a>
-<a href="#phrases">Phrases ENSAM</a>
-<a href="#ecoute">Écoute</a>
-<a href="#quiz">Quiz</a>
+<nav class="site-nav">
+  <div class="site-nav__inner">
+    <button class="nav-tab active" onclick="showSection('vocab',this)">Vocabulaire</button>
+    <button class="nav-tab" onclick="showSection('phrases',this)">Phrases</button>
+    <button class="nav-tab" onclick="showSection('quiz',this)">Quiz</button>
+    <button class="nav-tab" onclick="showSection('ecoute',this)">Écoute</button>
+    <button class="nav-tab" onclick="showSection('traduction',this)">Traduction</button>
+    <button class="nav-tab" onclick="showSection('prononciation',this)">Prononciation</button>
+    <button class="nav-tab" onclick="showSection('audio',this)">Mes audios</button>
+  </div>
 </nav>
 
-<main>
+<main class="main">
 
-<!-- VOCAB -->
-<section id="vocabulaire">
-<h2>Vocabulaire essentiel</h2>
-<ul>
-<li>Bonjour : Salam <button onclick="playAudio('audio/salam.mp3')">🔊</button></li>
-<li>Merci : Shukran <button onclick="playAudio('audio/shukran.mp3')">🔊</button></li>
-<li>Oui : Iyyeh <button onclick="playAudio('audio/iyyeh.mp3')">🔊</button></li>
-<li>Non : La <button onclick="playAudio('audio/la.mp3')">🔊</button></li>
-</ul>
-</section>
-
-<!-- PHRASES ENSAM -->
-<section id="phrases">
-<h2>Phrases utiles à l’ENSAM</h2>
-
-<ul>
-<li>Fin salle ? → Où est la salle ?</li>
-<li>3tini cours → Donne-moi le cours</li>
-<li>Fach exam ? → Quand est l’examen ?</li>
-<li>Ma fhemtch → Je n’ai pas compris</li>
-</ul>
-
-</section>
-
-<!-- ECOUTE -->
-<section id="ecoute">
-<h2>Exercice d’écoute 🎧</h2>
-
-<p>Écoute et devine :</p>
-
-<button onclick="playAudio('audio/shukran.mp3')">🔊 Écouter</button>
-
-<button onclick="checkListening(true)">Shukran</button>
-<button onclick="checkListening(false)">Salam</button>
-
-<p id="listenResult"></p>
-
-</section>
-
-<!-- TRADUCTION -->
-<section>
-<h2>Traduction</h2>
-
-<p>Traduire : "Merci"</p>
-<input type="text" id="translateInput">
-<button onclick="checkTranslation()">Valider</button>
-
-<p id="translateResult"></p>
-
-</section>
-
-<!-- QUIZ -->
-<section id="quiz">
-<h2>Quiz</h2>
-
-<p>Comment dit-on "Oui" ?</p>
-
-<button onclick="answerQuiz(true)">Iyyeh</button>
-<button onclick="answerQuiz(false)">La</button>
-
-<p id="quizResult"></p>
-
-<div class="progress">
-<div class="progress-bar" id="progressBar"></div>
+<!-- VOCABULAIRE -->
+<div class="section active" id="s-vocab">
+  <div class="lesson-pills" id="lessonPills"></div>
+  <div class="tip" id="lessonTip"></div>
+  <div class="vocab-grid" id="vocabGrid"></div>
 </div>
 
-<p>Score : <span id="score">0</span></p>
+<!-- PHRASES -->
+<div class="section" id="s-phrases">
+  <p class="phrase-group-title">En cours</p>
+  <div id="phrasesCours"></div>
+  <p class="phrase-group-title">À la cafétéria · Vie quotidienne</p>
+  <div id="phrasesCafe"></div>
+  <p class="phrase-group-title">Urgences · Aide</p>
+  <div id="phrasesUrgence"></div>
+</div>
 
-</section>
+<!-- QUIZ -->
+<div class="section" id="s-quiz">
+  <div id="quizBody">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span>Question <span id="qNum">1</span> / 10</span>
+        <span>Score <span id="quizScore">0</span></span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="quizFill" style="width:0%"></div></div>
+    </div>
+    <div class="quiz-q" id="quizQ"></div>
+    <div class="quiz-opts" id="quizOpts"></div>
+    <div class="feedback" id="quizFb"></div>
+    <button class="btn-primary" id="quizNext" onclick="nextQuestion()" disabled>Continuer</button>
+  </div>
+  <div class="done-card" id="quizDone">
+    <div class="done-score" id="finalScore"></div>
+    <div class="done-label">sur 10 — quiz terminé</div>
+    <button class="btn-outline" style="max-width:200px;margin:auto" onclick="resetQuiz()">Recommencer</button>
+  </div>
+</div>
+
+<!-- ÉCOUTE -->
+<div class="section" id="s-ecoute">
+  <div class="progress-wrap">
+    <div class="progress-meta"><span>Exercice d'écoute</span></div>
+    <div class="progress-track"><div class="progress-fill" id="listenFill" style="width:0%"></div></div>
+  </div>
+  <div class="listen-word" id="listenWord"></div>
+  <div class="listen-ph" id="listenPh"></div>
+  <div class="waveform" id="waveform1"></div>
+  <div class="listen-opts" id="listenOpts"></div>
+  <div class="feedback" id="listenFb" style="margin-top:14px"></div>
+  <button class="btn-primary" style="margin-top:16px" id="listenNext" onclick="nextListen()" disabled>Continuer</button>
+</div>
+
+<!-- TRADUCTION -->
+<div class="section" id="s-traduction">
+  <div class="progress-wrap">
+    <div class="progress-meta">
+      <span>Exercice <span id="tNum">1</span> / 8</span>
+      <span>Score <span id="tScore">0</span></span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="tFill" style="width:0%"></div></div>
+  </div>
+  <p style="font-size:12px;letter-spacing:0.5px;color:var(--muted);margin-bottom:10px">Traduire en Darija</p>
+  <div class="t-word" id="tWord"></div>
+  <input class="translate-input" type="text" id="tInput" placeholder="Écris la traduction…">
+  <button class="btn-primary" onclick="checkTranslation()">Valider</button>
+  <div class="feedback" id="tFb" style="margin-top:12px"></div>
+  <button class="btn-outline" style="margin-top:10px" id="tNext" onclick="nextTranslation()" disabled>Continuer</button>
+</div>
+
+<!-- PRONONCIATION -->
+<div class="section" id="s-prononciation">
+  <div class="progress-wrap">
+    <div class="progress-meta"><span>Entraîne ta prononciation</span></div>
+    <div class="progress-track"><div class="progress-fill" id="recFill" style="width:0%"></div></div>
+  </div>
+  <div style="text-align:center;padding:8px 0 0">
+    <p style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted2)">Mot à prononcer</p>
+    <div class="rec-word" id="recWord"></div>
+    <div class="rec-ph" id="recPh"></div>
+    <div class="waveform" id="waveform2"></div>
+    <div class="rec-btns">
+      <button class="rec-btn-start" id="recBtn" onclick="toggleRecording()">Enregistrer</button>
+      <button class="rec-btn-sec" id="recPlayBtn" onclick="playRecording()" disabled>Écouter</button>
+      <button class="rec-btn-sec" onclick="nextRecWord()">Mot suivant</button>
+    </div>
+    <p class="rec-status" id="recStatus">Appuie sur Enregistrer pour commencer</p>
+  </div>
+</div>
+
+<!-- MES AUDIOS -->
+<div class="section" id="s-audio">
+  <p class="block-label">Importer un audio</p>
+  <div class="upload-zone">
+    <p class="upload-zone-label">Glisse un fichier ou clique pour importer</p>
+    <label class="upload-btn">
+      Choisir un fichier
+      <input type="file" accept="audio/*" style="display:none" onchange="handleAudioUpload(event)">
+    </label>
+    <p style="font-size:11px;color:var(--muted2);margin-top:10px">MP3, WAV, OGG — max 10 Mo</p>
+  </div>
+  <div id="audioList"></div>
+  <p class="block-label" style="margin-top:28px">Associer à un mot</p>
+  <div id="audioAssign"></div>
+</div>
 
 </main>
 
 <script>
+// ── DATA ──────────────────────────────────────────────
+const LESSONS={
+  salutations:{label:'Salutations',tip:'En Darija, "Salam" s\'utilise à toute heure. "Labas ?" est le bonjour le plus courant entre amis.',
+    words:[
+      {fr:'Bonjour',d:'Salam',ar:'سلام',ph:'sa-lam'},
+      {fr:'Comment ça va ?',d:'Labas ?',ar:'لاباس؟',ph:'la-bas'},
+      {fr:'Ça va bien',d:'Labas, llah ibarek',ar:'لاباس',ph:'la-bas lah i-ba-rek'},
+      {fr:'Au revoir',d:'B slama',ar:'بسلامة',ph:'b-sla-ma'},
+      {fr:'Merci',d:'Shukran',ar:'شكرا',ph:'chok-ran'},
+      {fr:'S\'il te plaît',d:'Afak',ar:'عفاك',ph:'a-fak'},
+      {fr:'Oui',d:'Iyyeh',ar:'إيه',ph:'i-yeh'},
+      {fr:'Non',d:'La',ar:'لا',ph:'la'},
+    ]},
+  universite:{label:'Université',tip:'À l\'ENSAM les cours sont en français, mais les échanges entre étudiants se font souvent en Darija.',
+    words:[
+      {fr:'La salle de cours',d:'Biit / Salle',ar:'البيت',ph:'bi-it'},
+      {fr:'Le professeur',d:'Ustad',ar:'الأستاذ',ph:'us-tad'},
+      {fr:'L\'examen',d:'Imtihan',ar:'الامتحان',ph:'im-ti-han'},
+      {fr:'La leçon',d:'Dars',ar:'الدرس',ph:'dars'},
+      {fr:'Je n\'ai pas compris',d:'Ma fhemtch',ar:'ما فهمتش',ph:'ma-fhem-ch'},
+      {fr:'Répète s\'il te plaît',d:'Eawd afak',ar:'عاود عفاك',ph:'a-wid a-fak'},
+      {fr:'Le projet',d:'Mashrou3',ar:'المشروع',ph:'mach-rou3'},
+      {fr:'La bibliothèque',d:'Maktaba',ar:'المكتبة',ph:'mak-ta-ba'},
+    ]},
+  quotidien:{label:'Quotidien',tip:'Les nombres en Darija sont souvent empruntés au français dans la vie quotidienne à Tanger.',
+    words:[
+      {fr:'L\'eau',d:'L\'ma',ar:'الماء',ph:'l-ma'},
+      {fr:'Manger',d:'Kla',ar:'كلا',ph:'k-la'},
+      {fr:'Combien ça coûte ?',d:'Bchhal ?',ar:'بشحال؟',ph:'b-chal'},
+      {fr:'Le taxi',d:'Taxi',ar:'التاكسي',ph:'tak-si'},
+      {fr:'La maison',d:'Dar',ar:'الدار',ph:'dar'},
+      {fr:'Le marché',d:'Souk',ar:'السوق',ph:'souk'},
+      {fr:'Maintenant',d:'Daba',ar:'دابا',ph:'da-ba'},
+      {fr:'Demain',d:'Ghadda',ar:'غدا',ph:'gha-dda'},
+    ]},
+  nombres:{label:'Nombres',tip:'Les Marocains utilisent souvent les chiffres français pour les prix, mais les chiffres en Darija pour compter.',
+    words:[
+      {fr:'Un',d:'Wahed',ar:'واحد',ph:'wa-hed'},
+      {fr:'Deux',d:'Jouj',ar:'جوج',ph:'jouj'},
+      {fr:'Trois',d:'Tlata',ar:'تلاتة',ph:'tla-ta'},
+      {fr:'Cinq',d:'Khamsa',ar:'خمسة',ph:'kham-sa'},
+      {fr:'Dix',d:'3achra',ar:'عشرة',ph:'3ach-ra'},
+      {fr:'Vingt',d:'3ichrin',ar:'عشرين',ph:'3ich-rin'},
+      {fr:'Cent',d:'Miya',ar:'مية',ph:'mi-ya'},
+      {fr:'Combien',d:'Bchhal',ar:'بشحال',ph:'b-chal'},
+    ]},
+};
 
-let score = 0;
-let progress = 0;
+const PHRASES={
+  cours:[
+    {d:'Fin l\'amfi ?',fr:'Où est l\'amphithéâtre ?',ctx:'Trouver sa salle'},
+    {d:'3tini l\'cours afak',fr:'Donne-moi le cours s\'il te plaît',ctx:'Demander les notes'},
+    {d:'Fach l\'exam ?',fr:'Quand est l\'examen ?',ctx:'Planning des cours'},
+    {d:'Ma fhemtch, eawd',fr:'Je n\'ai pas compris, répète',ctx:'En cours'},
+    {d:'Chi chi dyal sujé ?',fr:'Quel est le sujet du projet ?',ctx:'Projet / TP'},
+    {d:'Ustad, 3andi sual',fr:'Professeur, j\'ai une question',ctx:'Interpeller le prof'},
+  ],
+  cafe:[
+    {d:'Bchhal had chi ?',fr:'Combien ça coûte ?',ctx:'À la cafétéria'},
+    {d:'3tini atay',fr:'Donne-moi un thé',ctx:'Commander'},
+    {d:'Fein t\'toilette ?',fr:'Où sont les toilettes ?',ctx:'Se repérer'},
+    {d:'Mzyan !',fr:'C\'est bien ! Délicieux !',ctx:'Approbation'},
+    {d:'Sahha !',fr:'Santé ! Bon appétit !',ctx:'En mangeant'},
+    {d:'Nta mn fin ?',fr:'Tu viens d\'où ?',ctx:'Se présenter'},
+  ],
+  urgence:[
+    {d:'3awni afak !',fr:'Aide-moi s\'il te plaît !',ctx:'Urgence'},
+    {d:'Wqfat 3liya',fr:'Je suis bloqué / Ma voiture est en panne',ctx:'Problème'},
+    {d:'Lmospital fin ?',fr:'Où est l\'hôpital ?',ctx:'Santé'},
+    {d:'Bghit ntsenafit',fr:'Je veux m\'inscrire',ctx:'Administration'},
+  ],
+};
 
-function playAudio(src) {
-    const audio = new Audio(src);
-    audio.play();
+// ── HELPERS ──────────────────────────────────────────
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+function speakWord(w,btn){
+  if(!('speechSynthesis' in window))return;
+  const u=new SpeechSynthesisUtterance(w);
+  u.lang='ar-MA';u.rate=0.75;
+  if(btn){btn.classList.add('playing');u.onend=()=>btn.classList.remove('playing')}
+  speechSynthesis.speak(u);
 }
 
-// QUIZ
-function answerQuiz(correct) {
-    let result = document.getElementById("quizResult");
-
-    if(correct){
-        result.innerHTML = "✅ Correct";
-        result.className = "correct";
-        score++;
-    } else {
-        result.innerHTML = "❌ Faux";
-        result.className = "incorrect";
-    }
-
-    progress += 50;
-    document.getElementById("progressBar").style.width = progress + "%";
-    document.getElementById("score").innerText = score;
+function waveform(id,active){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML='';
+  for(let i=0;i<20;i++){
+    const b=document.createElement('div');
+    b.className='wbar'+(active?' a':'');
+    b.style.height=(active?(Math.random()*32+6):'10')+'px';
+    el.appendChild(b);
+  }
+  if(active){
+    const iv=setInterval(()=>{
+      if(!el.querySelector('.wbar.a')){clearInterval(iv);return}
+      el.querySelectorAll('.wbar.a').forEach(b=>b.style.height=(Math.random()*32+6)+'px');
+    },130);
+  }
 }
 
-// TRADUCTION
+function showSection(id,tab){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('s-'+id).classList.add('active');
+  if(tab)tab.classList.add('active');
+}
+
+// ── VOCAB ────────────────────────────────────────────
+function buildVocab(){
+  const pills=document.getElementById('lessonPills');
+  pills.innerHTML='';
+  Object.entries(LESSONS).forEach(([k,l],i)=>{
+    const b=document.createElement('button');
+    b.className='lpill'+(i===0?' active':'');
+    b.textContent=l.label;
+    b.onclick=()=>{
+      document.querySelectorAll('.lpill').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      renderVocab(k);
+    };
+    pills.appendChild(b);
+  });
+  renderVocab('salutations');
+}
+
+function renderVocab(k){
+  const l=LESSONS[k];
+  document.getElementById('lessonTip').textContent=l.tip;
+  const g=document.getElementById('vocabGrid');
+  g.innerHTML='';
+  l.words.forEach(w=>{
+    const d=document.createElement('div');
+    d.className='vocab-card';
+    d.innerHTML=`<span class="vc-fr">${w.fr}</span><span class="vc-darija">${w.d}</span><div class="vc-bottom"><span class="vc-ph">[${w.ph}]</span><span class="vc-arabic">${w.ar}</span></div><button class="speak-btn" onclick="speakWord('${w.d}',this)">▶ Écouter</button>`;
+    g.appendChild(d);
+  });
+}
+
+// ── PHRASES ──────────────────────────────────────────
+function buildPhrases(){
+  [['cours','phrasesCours'],['cafe','phrasesCafe'],['urgence','phrasesUrgence']].forEach(([k,id])=>{
+    const c=document.getElementById(id);
+    c.innerHTML='';
+    PHRASES[k].forEach(p=>{
+      const d=document.createElement('div');
+      d.className='phrase-item';
+      d.innerHTML=`<div class="phrase-left"><div class="phrase-darija">${p.d}</div><div class="phrase-fr">${p.fr}</div><div class="phrase-ctx">${p.ctx}</div></div><button class="phrase-speak" onclick="speakWord('${p.d}',this)">▶</button>`;
+      c.appendChild(d);
+    });
+  });
+}
+
+// ── QUIZ ─────────────────────────────────────────────
+const ALL_WORDS=Object.values(LESSONS).flatMap(l=>l.words);
+let quizPool=[],quizIdx=0,quizSc=0;
+
+function buildQuiz(){
+  quizPool=shuffle(ALL_WORDS.map(w=>({
+    q:`Comment dit-on en Darija : "${w.fr}" ?`,
+    correct:w.d,
+    opts:shuffle([w.d,...shuffle(ALL_WORDS.filter(x=>x.d!==w.d)).slice(0,3).map(x=>x.d)])
+  }))).slice(0,10);
+  quizIdx=0;quizSc=0;
+  document.getElementById('quizBody').style.display='';
+  document.getElementById('quizDone').classList.remove('show');
+  showQ();
+}
+
+function showQ(){
+  if(quizIdx>=quizPool.length){endQuiz();return}
+  const q=quizPool[quizIdx];
+  document.getElementById('qNum').textContent=quizIdx+1;
+  document.getElementById('quizScore').textContent=quizSc;
+  document.getElementById('quizFill').style.width=(quizIdx/10*100)+'%';
+  document.getElementById('quizQ').textContent=q.q;
+  document.getElementById('quizFb').className='feedback';
+  document.getElementById('quizNext').disabled=true;
+  const c=document.getElementById('quizOpts');
+  c.innerHTML='';
+  q.opts.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='quiz-opt';b.textContent=o;
+    b.onclick=()=>{
+      if(b.disabled)return;
+      Array.from(c.children).forEach(x=>{x.disabled=true});
+      const ok=o===q.correct;
+      b.classList.add(ok?'correct':'wrong');
+      if(!ok)Array.from(c.children).forEach(x=>{if(x.textContent===q.correct)x.classList.add('correct')});
+      const fb=document.getElementById('quizFb');
+      fb.textContent=ok?'Correct ✓':'Réponse : '+q.correct;
+      fb.className='feedback show '+(ok?'correct':'wrong');
+      if(ok)quizSc++;
+      document.getElementById('quizNext').disabled=false;
+    };
+    c.appendChild(b);
+  });
+}
+
+function nextQuestion(){quizIdx++;showQ()}
+function endQuiz(){
+  document.getElementById('quizBody').style.display='none';
+  document.getElementById('finalScore').textContent=quizSc+'/10';
+  document.getElementById('quizDone').classList.add('show');
+}
+function resetQuiz(){buildQuiz()}
+
+// ── ÉCOUTE ───────────────────────────────────────────
+let listenPool=[],listenIdx=0;
+
+function buildListen(){
+  listenPool=shuffle([...ALL_WORDS]);listenIdx=0;showListen();
+}
+
+function showListen(){
+  if(listenIdx>=listenPool.length)listenIdx=0;
+  const w=listenPool[listenIdx];
+  document.getElementById('listenWord').textContent=w.d;
+  document.getElementById('listenPh').textContent='['+w.ph+']';
+  document.getElementById('listenFill').style.width=(listenIdx/listenPool.length*100)+'%';
+  document.getElementById('listenFb').className='feedback';
+  document.getElementById('listenNext').disabled=true;
+  waveform('waveform1',false);
+  const opts=shuffle([w.fr,...shuffle(ALL_WORDS.filter(x=>x.fr!==w.fr)).slice(0,3).map(x=>x.fr)]);
+  const c=document.getElementById('listenOpts');
+  c.innerHTML='';
+  opts.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='listen-opt';b.textContent=o;
+    b.onclick=()=>{
+      Array.from(c.children).forEach(x=>x.disabled=true);
+      const ok=o===w.fr;
+      b.classList.add(ok?'correct':'wrong');
+      if(!ok)Array.from(c.children).forEach(x=>{if(x.textContent===w.fr)x.classList.add('correct')});
+      const fb=document.getElementById('listenFb');
+      fb.textContent=ok?'Correct ✓':'C\'était : '+w.fr;
+      fb.className='feedback show '+(ok?'correct':'wrong');
+      document.getElementById('listenNext').disabled=false;
+    };
+    c.appendChild(b);
+  });
+}
+
+function nextListen(){listenIdx++;showListen()}
+
+// ── TRADUCTION ───────────────────────────────────────
+const T_WORDS=shuffle([...ALL_WORDS]).slice(0,8);
+let tIdx=0,tSc=0;
+
+function buildTranslation(){tIdx=0;tSc=0;showT()}
+
+function showT(){
+  if(tIdx>=T_WORDS.length)return;
+  const w=T_WORDS[tIdx];
+  document.getElementById('tNum').textContent=tIdx+1;
+  document.getElementById('tScore').textContent=tSc;
+  document.getElementById('tFill').style.width=(tIdx/8*100)+'%';
+  document.getElementById('tWord').textContent=w.fr;
+  document.getElementById('tInput').value='';
+  document.getElementById('tFb').className='feedback';
+  document.getElementById('tNext').disabled=true;
+  document.getElementById('tInput').focus();
+}
+
 function checkTranslation(){
-    let val = document.getElementById("translateInput").value.toLowerCase();
-    let result = document.getElementById("translateResult");
-
-    if(val.includes("shukran")){
-        result.innerHTML = "✅ Correct";
-        result.className = "correct";
-        score++;
-    } else {
-        result.innerHTML = "❌ Réponse attendue : Shukran";
-        result.className = "incorrect";
-    }
+  const val=document.getElementById('tInput').value.trim().toLowerCase();
+  const correct=T_WORDS[tIdx].d.toLowerCase();
+  const ok=val===correct||(correct.includes(val)&&val.length>2);
+  const fb=document.getElementById('tFb');
+  fb.textContent=ok?'Correct ✓':'Réponse attendue : '+T_WORDS[tIdx].d;
+  fb.className='feedback show '+(ok?'correct':'wrong');
+  if(ok)tSc++;
+  document.getElementById('tNext').disabled=false;
 }
 
-// ECOUTE
-function checkListening(correct){
-    let res = document.getElementById("listenResult");
+function nextTranslation(){tIdx++;if(tIdx<T_WORDS.length)showT()}
 
-    if(correct){
-        res.innerHTML = "✅ Bien joué";
-        res.className = "correct";
-    } else {
-        res.innerHTML = "❌ Essaie encore";
-        res.className = "incorrect";
-    }
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('tInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkTranslation()});
+});
+
+// ── PRONONCIATION ────────────────────────────────────
+const REC_WORDS=shuffle([...ALL_WORDS]);
+let recIdx=0,mediaRec=null,recChunks=[],recBlob=null,recAudio=null;
+
+function showRecWord(){
+  const w=REC_WORDS[recIdx%REC_WORDS.length];
+  document.getElementById('recWord').textContent=w.d;
+  document.getElementById('recPh').textContent='['+w.ph+'] — '+w.fr;
+  document.getElementById('recPlayBtn').disabled=true;
+  document.getElementById('recStatus').textContent='Appuie sur Enregistrer pour commencer';
+  document.getElementById('recFill').style.width=(recIdx/REC_WORDS.length*100)+'%';
+  recBlob=null;recAudio=null;
+  waveform('waveform2',false);
 }
 
+function nextRecWord(){recIdx++;showRecWord()}
+
+async function toggleRecording(){
+  const btn=document.getElementById('recBtn');
+  if(mediaRec&&mediaRec.state==='recording'){
+    mediaRec.stop();
+    btn.textContent='Enregistrer';
+    btn.classList.remove('rec');
+    waveform('waveform2',false);
+  } else {
+    try{
+      const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+      recChunks=[];
+      mediaRec=new MediaRecorder(stream);
+      mediaRec.ondataavailable=e=>recChunks.push(e.data);
+      mediaRec.onstop=()=>{
+        recBlob=new Blob(recChunks,{type:'audio/webm'});
+        recAudio=new Audio(URL.createObjectURL(recBlob));
+        document.getElementById('recPlayBtn').disabled=false;
+        document.getElementById('recStatus').textContent='Enregistré — écoute-toi';
+        stream.getTracks().forEach(t=>t.stop());
+      };
+      mediaRec.start();
+      btn.textContent='Arrêter';
+      btn.classList.add('rec');
+      document.getElementById('recStatus').textContent='Enregistrement en cours…';
+      waveform('waveform2',true);
+    }catch(e){
+      document.getElementById('recStatus').textContent='Microphone non accessible';
+    }
+  }
+}
+
+function playRecording(){if(recAudio)recAudio.play()}
+
+// ── AUDIO UPLOAD ─────────────────────────────────────
+let userAudios=[];
+
+function handleAudioUpload(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  if(file.size>10*1024*1024){alert('Fichier trop grand (max 10 Mo)');return}
+  userAudios.push({name:file.name,url:URL.createObjectURL(file)});
+  renderAudioList();
+  e.target.value='';
+}
+
+function renderAudioList(){
+  const list=document.getElementById('audioList');
+  if(!userAudios.length){list.innerHTML='<p class="empty-msg">Aucun audio importé</p>';renderAudioAssign();return}
+  list.innerHTML='';
+  userAudios.forEach((a,i)=>{
+    const d=document.createElement('div');
+    d.className='audio-item';
+    d.innerHTML=`<span class="audio-name">${a.name}</span><button class="audio-sm-btn" onclick="new Audio(userAudios[${i}].url).play()">Écouter</button><button class="audio-del" onclick="userAudios.splice(${i},1);renderAudioList()">✕</button>`;
+    list.appendChild(d);
+  });
+  renderAudioAssign();
+}
+
+function renderAudioAssign(){
+  const c=document.getElementById('audioAssign');
+  if(!userAudios.length){c.innerHTML='<p class="empty-msg">Importe d\'abord un audio</p>';return}
+  c.innerHTML='';
+  userAudios.forEach((a,ai)=>{
+    const row=document.createElement('div');
+    row.className='assign-row';
+    const sel=document.createElement('select');
+    sel.className='assign-select';
+    sel.innerHTML='<option value="">Associer à un mot…</option>'+ALL_WORDS.map(w=>`<option value="${w.d}">${w.fr} → ${w.d}</option>`).join('');
+    const btn=document.createElement('button');
+    btn.className='assign-btn';btn.textContent='Associer';
+    btn.onclick=()=>{if(sel.value)alert('"'+a.name+'" associé à "'+sel.value+'"')};
+    row.innerHTML=`<span class="assign-name">${a.name}</span>`;
+    row.appendChild(sel);row.appendChild(btn);
+    c.appendChild(row);
+  });
+}
+
+// ── INIT ─────────────────────────────────────────────
+buildVocab();
+buildPhrases();
+buildQuiz();
+buildTranslation();
+buildListen();
+showRecWord();
+renderAudioList();
 </script>
-
 </body>
 </html>
